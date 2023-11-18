@@ -1,0 +1,21 @@
+syntax = "proto3"
+
+package repl_fs;
+
+
+service ReplFS {
+    rpc ListDirs() returns (stream Dir) {}
+    rpc ListFiles(Dir) returns (stream File) {}
+}
+
+message Dir {
+    int32 fileCount = 1;
+    int32 totalSize = 2;
+    string dirName = 3;
+}
+
+message File {
+    int32 fileSize = 1;
+    string fileName = 2;
+    bytes fileContents = 3;
+}
